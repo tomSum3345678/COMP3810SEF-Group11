@@ -1,7 +1,7 @@
 {
     "name": "server",
     "description": "EJS + MongoDB + Outh + RESTful express app",
-    "author": "Cloud381 Instructor",
+    "author": "Group 11",
     "version": "0.0.1",
     "dependencies": {
         "ejs": "*",
