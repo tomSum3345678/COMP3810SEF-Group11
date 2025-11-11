@@ -44,7 +44,7 @@
                 <% for (var product of products) { %>
                 <div>
                     <% if (product.productImage) { %>
-                        <img src="data:image/jpg;base64, <%= product.productImage %>" alt="<%= product.productName %>" width="150">
+                        <a href="/details?_id=<%= product._id %>"><img src="data:image/jpg;base64, <%= product.productImage %>" alt="<%= product.productName %>" width="150"></a>
                     <% } else { %>
                         <div>No Image</div>
                     <% } %>
@@ -69,3 +69,4 @@
     </div>
 </body>
 </html>
+
