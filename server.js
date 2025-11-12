@@ -293,7 +293,7 @@ app.get("/logout", authController.logout);
 app.get('/auth/status', authController.checkAuthStatus);
 
 // RESTful APIs
-app.get('/api/products', async (req, res) => {
+app.get('/api/products', async (req, res) => { // search products
     try {
         await client.connect();
         const db = client.db(dbName);
@@ -329,12 +329,11 @@ app.post('/api/products', async (req, res) => {
     }
 });
 
-app.put('/api/products/:id', async (req, res) => {
+app.put('/api/products/update/:productId', async (req, res) => {
     try {
         await client.connect();
         const db = client.db(dbName);
-        let DOCID = {};
-        DOCID['_id'] = new ObjectId(req.params.id);
+        const criteria = { productId: req.params.productId };
         
         let updateDoc = {
             productName: req.fields.productName,
@@ -349,7 +348,7 @@ app.put('/api/products/:id', async (req, res) => {
             updateDoc.productImage = Buffer.from(data).toString('base64');
         }
         
-        const result = await updateDocument(db, DOCID, updateDoc);
+        const result = await updateDocument(db, criteria, updateDoc);
         res.status(200).json({message: `Updated ${result.modifiedCount} product(s)`});
     } catch (error) {
         res.status(500).json({error: error.message});
@@ -360,7 +359,8 @@ app.delete('/api/products/delete/:productId', async (req, res) => {
     try {
         await client.connect();
         const db = client.db(dbName);
-        const result = await db.collection('products').deleteOne({ productId: req.params.productId });
+        const criteria = { productId: req.params.productId };
+        const result = await deleteDocument(db, criteria);
         res.status(200).json({message: `Deleted ${result.deletedCount} product(s)`});
     } catch (error) {
         res.status(500).json({error: error.message});
@@ -593,6 +593,7 @@ process.on('SIGINT', async () => {
   console.log(' Database connections closed');
   process.exit(0);
 });
+
 
 
 
