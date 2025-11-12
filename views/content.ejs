@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supermarket - Product Catalog</title>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="navbar-brand">
+      🛒 Supermarket
+    </div>
+    
+    <div class="navbar-actions">
+      <% if (isAuthenticated) { %>
+        <div class="user-info">
+          <% if (user.picture) { %>
+            <img src="<%= user.picture %>" alt="Avatar" class="user-avatar">
+          <% } else { %> 
+          <% } %>
+          <span style="color: #333; font-weight: 600;">
+            <%= user.displayName || user.email %>
+          </span>
+        </div>
+        
+        <% if (['staff', 'manager', 'storage'].includes(user.role)) { %>
+          <a href="/find" class="btn btn-dashboard">📊 Dashboard</a>
+        <% } %>
+        
+        <a href="/logout" class="btn btn-logout">🚪 Logout</a>
+      <% } else { %>
+        <a href="/login" class="btn btn-login">🔐 Login</a>
+      <% } %>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="header">
+      <h1>🛍️ Product Catalog</h1>
+      <p>Browse our wide selection of products</p>
+      <p style="margin-top: 10px; color: #999;">
+        Total Products: <strong><%= nProducts %></strong>
+      </p>
+    </div>
+
+    <!-- Search Form -->
+    <div class="search-form">
+      <form action="/content" method="GET">
+        <input 
+          type="text" 
+          name="productName" 
+          placeholder="Search products..."
+          value="<%= typeof query !== 'undefined' && query.productName ? query.productName : '' %>"
+        >
+        
+        <select name="category">
+          <option value="">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Food">Food</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Home">Home & Garden</option>
+          <option value="Sports">Sports</option>
+        </select>
+        
+        <button type="submit" class="btn btn-search">🔍 Search</button>
+      </form>
+    </div>
+
+    <!-- Product Grid -->
+    <% if (products && products.length > 0) { %>
+      <div class="product-grid">
+        <% products.forEach(function(product) { %>
+          <div class="product-card">
+            <% if (product.productImage) { %>
+              <img src="data:image/jpeg;base64,<%= product.productImage %>" alt="<%= product.productName %>" class="product-image">
+            <% } else { %>
+              <div class="product-image" style="display: flex; align-items: center; justify-content: center; color: #999;">
+                📦 No Image
+              </div>
+            <% } %>
+            
+            <div class="product-info">
+              <div class="product-name"><%= product.productName %></div>
+              <span class="product-category"><%= product.category %></span>
+              <div class="product-price">$<%= product.price.toFixed(2) %></div>
+              <div class="product-stock">
+                <% if (product.stock > 0) { %>
+                  ✅ In Stock: <%= product.stock %> units
+                <% } else { %>
+                  ❌ Out of Stock
+                <% } %>
+              </div>
+              <a href="/details?_id=<%= product._id %>" class="btn btn-details">
+                View Details
+              </a>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <div class="no-products">
+        <h2> No products found</h2>
+        <p>Try adjusting your search criteria</p>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>

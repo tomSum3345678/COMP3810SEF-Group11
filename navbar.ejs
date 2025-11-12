@@ -1,0 +1,46 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a href="/content" style="text-decoration: none; color: inherit;">
+      🛒 Supermarket System
+    </a>
+  </div>
+  
+  <div class="navbar-user">
+    <% if (isAuthenticated && user) { %>
+      <div class="user-info">
+        <% if (user.picture) { %>
+          <img src="<%= user.picture %>" alt="Avatar" class="user-avatar">
+        <% } else { %>
+          
+        <% } %>
+        
+        <div class="user-details">
+          <div class="user-name"><%= user.displayName || user.email %></div>
+          <div class="user-role">
+            <%= user.role %>
+            <% if (user.provider === 'google') { %>
+              |  Google
+            <% } else if (user.provider === 'local') { %>
+              |  Local
+            <% } %>
+          </div>
+        </div>
+      </div>
+      
+
+      <% if (['staff', 'manager', 'storage'].includes(user.role)) { %>
+        <a href="/find" class="btn-dashboard">
+          📊 Dashboard
+        </a>
+      <% } %>
+      
+      <a href="/logout" class="btn-logout">
+        🚪 Logout
+      </a>
+    <% } else { %>
+      <a href="/login" class="btn-login">
+        🔐 Login
+      </a>
+    <% } %>
+  </div>
+</nav>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - Supermarket System</title>
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-header">
+      <h1>🛒 Supermarket System</h1>
+      <p>Secure Login Portal</p>
+    </div>
+    
+    <div class="login-body">
+      <% if (messages && messages.length > 0) { %>
+        <div class="messages">
+          <% messages.forEach(function(message) { %>
+            <p> <%= message %></p>
+          <% }); %>
+        </div>
+      <% } %>
+      
+      <!-- Local Login Form -->
+      <form action="/login" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="email"> Email Address</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Enter your email"
+            required
+          >
+        </div>
+        
+        <div class="form-group">
+          <label for="password"> Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter your password"
+            required
+          >
+        </div>
+        
+        <button type="submit" class="btn btn-primary">
+          Sign In
+        </button>
+      </form>
+      
+      <div class="divider">
+        <span>OR</span>
+      </div>
+      
+      <!-- Google OAuth Login -->
+      <a href="/auth/google" style="text-decoration: none;">
+        <button type="button" class="btn btn-google">
+          <img src="https://www.google.com/favicon.ico" alt="Google" width="20">
+          Sign in with Google
+        </button>
+      </a>
+      
+      <!-- Test Accounts Info -->
+      <div class="test-accounts">
+        <h3>Test Accounts</h3>
+        <ul>
+          <li><strong>End User:</strong> <code>john@example.com</code> / <code>USER</code></li>
+          <li><strong>Staff:</strong> <code>alice@supermarket.com</code> / <code>STAFF</code></li>
+          <li><strong>Storage:</strong> <code>bob@supermarket.com</code> / <code>STORAGE</code></li>
+          <li><strong>Manager:</strong> <code>carol@supermarket.com</code> / <code>MANAGER</code></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p> Secure authentication powered by Passport.js</p>
+      <p>&copy; 2025 Supermarket System. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
