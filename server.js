@@ -329,11 +329,17 @@ app.get("/logout", authController.logout);
 app.get('/auth/status', authController.checkAuthStatus);
 
 // RESTful APIs
-app.get('/api/products', async (req, res) => { // search products
+app.get('/api/products', async (req, res) => { //search products
   try {
     await client.connect();
     const db = client.db(dbName);
-    const docs = await findDocument(db, req.query);
+
+    // a projection that excludes productImage(base64 is too long)
+    const projection = { productImage: 0 };
+
+    const docs = await db.collection('products')
+      .find(req.query, { projection })
+      .toArray();
     res.status(200).json(docs);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -634,6 +640,7 @@ process.on('SIGINT', async () => {
   console.log(' Database connections closed');
   process.exit(0);
 });
+
 
 
 
