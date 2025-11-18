@@ -153,8 +153,10 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(async function (id, done) {
   try {
     const user = await User.findById(id);
+    console.log('Render Log - Deserialized User:', user);
     done(null, user);
   } catch (error) {
+    console.error('Render Log - Deserialize Error:', error);
     done(error, null);
   }
 });
@@ -501,6 +503,8 @@ app.get('/', isLoggedIn, (req, res) => {
 
 // Content page 
 app.get('/content', async (req, res) => {
+  console.log('Render Log - User:', req.user);
+  console.log('Render Log - Authenticated:', req.isAuthenticated());
   try {
     await client.connect();
     console.log("Connected successfully to server");
@@ -517,8 +521,8 @@ app.get('/content', async (req, res) => {
     const docs = await findDocument(db, criteria);
 
     res.status(200).render('content', {
-      nProducts: docs.length,
-      products: docs,
+      nProducts: docs.length|| 0,
+      products: docs || [],
       user: req.user || null,
       isAuthenticated: req.isAuthenticated()
     });

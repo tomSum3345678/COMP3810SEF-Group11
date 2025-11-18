@@ -59,6 +59,8 @@ exports.processLogin = (req, res, next) => {
 
 // Handle Google login
 exports.googleCallback = (req, res) => {
+  console.log('Render Log - Google Callback User:', req.user);
+  console.log('Render Log - Session:', req.session);
   const redirectTo = req.session.returnTo || '/';
   delete req.session.returnTo;
   res.redirect(redirectTo);
