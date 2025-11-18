@@ -263,13 +263,20 @@ const insertDocument = async (db, doc) => {
   return results;
 }
 
-const findDocument = async (db, criteria) => {
-  let findResults = [];
-  let collection = db.collection(collectionName);
+const findDocument = async (db, criteria, projection = null) => {
+  const collection = db.collection(collectionName);
   console.log(`findCriteria: ${JSON.stringify(criteria)}`);
-  findResults = await collection.find(criteria).toArray();
+  let cursor;
+  if (projection) {
+    // If projection provided, use it
+    cursor = collection.find(criteria, { projection });
+  } else {
+    // Otherwise, return all fields
+    cursor = collection.find(criteria);
+  }
+  const findResults = await cursor.toArray();
   console.log(`findDocument: ${findResults.length}`);
-  console.log(`findResults: ${JSON.stringify(findResults)}`);
+  // console.log(`findResults: ${JSON.stringify(findResults)}`);  // optional
   return findResults;
 };
 
@@ -333,13 +340,9 @@ app.get('/api/products', async (req, res) => { //search products
   try {
     await client.connect();
     const db = client.db(dbName);
-
     // a projection that excludes productImage(base64 is too long)
-    const projection = { productImage: 0 };
-
-    const docs = await db.collection('products')
-      .find(req.query, { projection })
-      .toArray();
+    const projection = { productImage: 0 }; 
+    const docs = await findDocument(db, req.query, projection);
     res.status(200).json(docs);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -640,6 +643,7 @@ process.on('SIGINT', async () => {
   console.log(' Database connections closed');
   process.exit(0);
 });
+
 
 
 
