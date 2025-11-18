@@ -10,6 +10,7 @@ db.users.insertMany([
     username: "john_doe",
     email: "john@example.com",
     password: "USER",
+    provider: "local",
     role: "end-user", // end-user, staff, storage, manager
     profile: {
       firstName: "John",
@@ -31,6 +32,7 @@ db.users.insertMany([
     username: "staff_alice",
     email: "alice@supermarket.com",
     password: "STAFF",
+    provider: "local",
     role: "staff",
     profile: {
       firstName: "Alice",
@@ -47,6 +49,7 @@ db.users.insertMany([
     username: "storage_bob",
     email: "bob@supermarket.com",
     password: "STORAGE",
+    provider: "local",
     role: "storage",
     profile: {
       firstName: "Bob",
@@ -63,6 +66,7 @@ db.users.insertMany([
     username: "manager_carol",
     email: "carol@supermarket.com",
     password: "MANAGER",
+    provider: "local",
     role: "manager",
     profile: {
       firstName: "Carol",
@@ -743,7 +747,8 @@ db.permissions.insertMany([
 // Users indexes
 db.users.createIndex({ userId: 1 }, { unique: true })
 db.users.createIndex({ email: 1 }, { unique: true })
-db.users.createIndex({ username: 1 })
+db.users.createIndex({ username: 1 }, { unique: true, sparse: true })  
+db.users.createIndex({ googleId: 1 }, { unique: true, sparse: true })  
 db.users.createIndex({ role: 1 })
 
 // Products indexes
@@ -782,4 +787,4 @@ db.suppliers.createIndex({ status: 1 })
 
 // Permissions indexes
 db.permissions.createIndex({ permissionId: 1 }, { unique: true })
-db.permissions.createIndex({ role: 1 } )
+db.permissions.createIndex({ role: 1 })

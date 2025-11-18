@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     required: function () {
       return this.provider === 'google';  
     },
-    unique: true
+    unique: true,
+    sparse: true
   },
   userId: {
     type: String,
@@ -16,6 +17,7 @@ const userSchema = new mongoose.Schema({
   },
   username: {
     type: String,
+    unique: true,
     sparse: true
   },
   email: {
@@ -95,6 +97,7 @@ userSchema.statics.findOrCreate = async function (googleProfile, callback) {
       googleId: googleProfile.id,
       userId: userId,
       email: googleProfile.emails[0].value,
+      provider: 'google',
       displayName: googleProfile.displayName,
       firstName: googleProfile.name?.givenName,
       lastName: googleProfile.name?.familyName,
