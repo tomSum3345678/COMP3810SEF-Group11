@@ -88,10 +88,17 @@ passport.use(new GoogleStrategy({
       // 📝 創建新用戶
       console.log('📝 Creating new user...');
       user = new User({
-        googleId: googleId,           // ← 確保這裡有值
+        googleId: googleId,
+        userId: userId,              
         email: email,
         displayName: displayName,
+        firstName: firstName,        
+        lastName: lastName,          
+        picture: picture,            
         provider: 'google',
+        role: 'end-user',            
+        permissions: ['view_products', 'place_orders'], 
+        lastLogin: new Date(),
         createdAt: new Date()
       });
 
