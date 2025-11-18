@@ -52,67 +52,94 @@ passport.use(new GoogleStrategy({
 },
   async (accessToken, refreshToken, profile, done) => {
     try {
-      // 🔍 Debug: 完整顯示 profile 結構
-      console.log('\n📋 Complete Google Profile:');
+      //  Debug
+      console.log('\n Complete Google Profile:');
       console.log(JSON.stringify(profile, null, 2));
 
-      // ✅ 正確提取 Google ID
+      
       const googleId = profile.id || profile._json?.sub;
       const email = profile.emails?.[0]?.value;
       const displayName = profile.displayName || profile.name?.givenName || 'User';
+      const firstName = profile.name?.givenName || '';        
+      const lastName = profile.name?.familyName || '';        
+      const picture = profile.photos?.[0]?.value || '';       
 
-      console.log('\n✅ Extracted Data:');
+      console.log('\n Extracted Data:');
       console.log('Google ID:', googleId);
       console.log('Email:', email);
       console.log('Display Name:', displayName);
+      console.log('First Name:', firstName);
+      console.log('Last Name:', lastName);
 
-      // ⚠️ 驗證必要欄位
+     
       if (!googleId) {
-        console.error('Google ID is missing from profile!');
+        console.error(' Google ID is missing from profile!');
         return done(new Error('Google ID not found in profile'), null);
       }
 
       if (!email) {
-        console.error('Email is missing from profile!');
+        console.error(' Email is missing from profile!');
         return done(new Error('Email not found in profile'), null);
       }
 
-      // 🔍 查找或創建用戶
+      
       let user = await User.findOne({ googleId: googleId });
 
       if (user) {
-        console.log('✅ Existing user found:', user.email);
+        console.log(' Existing user found:', user.email);
+        
+       
+        user.lastLogin = new Date();
+        await user.save();
+        
         return done(null, user);
       }
 
-      // 📝 創建新用戶
-      console.log('📝 Creating new user...');
+      
+      console.log(' Creating new user...');
+
+      
+      const generateUserId = async () => {
+        const randomNum = Math.floor(Math.random() * 900000) + 100000; 
+        const userId = `USER${randomNum}`;
+        
+        
+        const existingUser = await User.findOne({ userId });
+        if (existingUser) {
+          return generateUserId(); 
+        }
+        return userId;
+      };
+
+      const userId = await generateUserId();  
+
       user = new User({
         googleId: googleId,
-        userId: userId,              
+        userId: userId,
         email: email,
         displayName: displayName,
-        firstName: firstName,        
-        lastName: lastName,          
-        picture: picture,            
+        firstName: firstName,
+        lastName: lastName,
+        picture: picture,
         provider: 'google',
-        role: 'end-user',            
-        permissions: ['view_products', 'place_orders'], 
+        role: 'end-user',
+        permissions: ['view_products', 'place_orders'],
         lastLogin: new Date(),
         createdAt: new Date()
       });
 
       await user.save();
-      console.log('✅ New user created:', user.email);
+      console.log('New user created:', user.email, 'with userId:', user.userId);
 
       return done(null, user);
 
     } catch (err) {
-      console.error('❌ Passport Strategy Error:', err);
+      console.error(' Passport Strategy Error:', err);
       return done(err, null);
     }
   }
 ));
+
 passport.use(new LocalStrategy({
   usernameField: 'email',    // 使用 email 作為用戶名
   passwordField: 'password',
@@ -176,13 +203,13 @@ app.set('trust proxy', 1);
 // 1. Session configuration
 app.use(session({
   secret: process.env.SESSION_SECRET,
-  resave: false,  
-  saveUninitialized: false,  
+  resave: false,
+  saveUninitialized: false,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
     httpOnly: true,
-    secure: true,  
-    sameSite: 'none'  
+    secure: true,
+    sameSite: 'none'
   }
 }));
 
@@ -517,9 +544,9 @@ app.get('/', isLoggedIn, (req, res) => {
 app.get('/content', async (req, res) => {
   console.log('Render Log - User:', req.user);
   console.log('Render Log - Authenticated:', req.isAuthenticated());
-  console.log('Session:', req.session); 
-  console.log('User:', req.user); 
-  console.log('Authenticated:', req.isAuthenticated()); 
+  console.log('Session:', req.session);
+  console.log('User:', req.user);
+  console.log('Authenticated:', req.isAuthenticated());
   try {
     await client.connect();
     console.log("Connected successfully to server");
