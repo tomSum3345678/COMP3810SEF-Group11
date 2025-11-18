@@ -26,7 +26,10 @@ const userSchema = new mongoose.Schema({
     trim: true
   },
   password: {
-    type: String
+    type: String,
+    required: function () {
+      return this.provider === 'local';  
+    }
   },
   provider: {
     type: String,
@@ -36,7 +39,13 @@ const userSchema = new mongoose.Schema({
   },
   displayName: {
     type: String,
-    required: true
+    required: function () {
+      return this.provider === 'google';  // When login with google
+    },
+    default: function () {
+      // If use username 或 email
+      return this.username || this.email?.split('@')[0] || 'User';
+    }
   },
   firstName: String,
   lastName: String,
@@ -60,6 +69,13 @@ const userSchema = new mongoose.Schema({
   }
 }, {
   timestamps: true
+});
+
+userSchema.pre('save', function(next) {
+  if (!this.displayName) {
+    this.displayName = this.username || this.email?.split('@')[0] || 'User';
+  }
+  next();
 });
 
 userSchema.statics.findOrCreate = async function (googleProfile, callback) {

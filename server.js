@@ -141,35 +141,30 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.use(new LocalStrategy({
-  usernameField: 'email',    // 使用 email 作為用戶名
+  usernameField: 'email',    
   passwordField: 'password',
-  passReqToCallback: true  // 使用 password 作為密碼
+  passReqToCallback: true  
 },
   async function (req, email, password, done) {
     try {
-      // 查找用戶
+
       const user = await User.findOne({ email: email });
 
-      // 如果用戶不存在
       if (!user) {
-        return done(null, false, { message: '找不到該電子郵件地址' });
+        return done(null, false, { message: 'Email address not found' });
       }
 
-      // 如果用戶是通過 Google 註冊的
       if (user.provider === 'google') {
-        return done(null, false, { message: '此帳戶使用 Google 登入，請點擊 "使用 Google 登入" 按鈕' });
+        return done(null, false, { message: 'This account is signed in with Google. Please click the "Sign in with Google" button.' });
       }
 
-      // 驗證密碼 (因為是明文密碼)
       if (user.password !== password) {
-        return done(null, false, { message: '密碼不正確' });
+        return done(null, false, { message: 'Incorrect Email or password' });
       }
 
-      // 更新最後登入時間
       user.lastLogin = new Date();
       await user.save();
 
-      // 登入成功
       return done(null, user);
     } catch (err) {
       return done(err);
