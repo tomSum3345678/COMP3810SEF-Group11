@@ -77,7 +77,7 @@ userSchema.pre('save', function(next) {
   if (!this.displayName) {
     this.displayName = this.username || this.email?.split('@')[0] || 'User';
   }
-  next();
+  //next();
 });
 
 userSchema.statics.findOrCreate = async function (googleProfile, callback) {
