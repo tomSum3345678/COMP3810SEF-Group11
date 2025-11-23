@@ -295,15 +295,14 @@ Database Restore
 
 # localhost Operation Guides
 1. Clone the Project
-git clone https://github.com/tomSum3345678/Node.js-App.git
-git clone https://github.com/tomSum3345678/COMP3810SEF-Group11.git
-cd Node.js-App
-2. Install Dependencies
+     (git clone https://github.com/tomSum3345678/COMP3810SEF-Group11.git)
+2. cd Node.js-App
+3. Install Dependencies
 npm install passport passport-local passport-google-oauth20 express express-session connect-mongo mongoose bcryptjs dotenv
-3. Environment Variables Configuration
+4. Environment Variables Configuration
 make sure production of GOOGLE_CALLBACK_URL in the .env was comment
-4. start with localhost
+5. start with localhost
 please comment the code of Middleware Setup in server.js from line 218 - 228
 Uncomment the code of Middleware Setup in server.js from line 203 - 216
-5. npm start
+6. npm start
 The application will start at http://localhost:8099
