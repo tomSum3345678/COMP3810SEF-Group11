@@ -90,33 +90,34 @@ NODE_JS-APP/
 └── 📄 server.js               # Main server file
 
 # Project file intro:
+
 /models
-     User.js: Mongoose schema for user authentication with support for:
-     Google OAuth users (googleId, displayName, picture)
-     Local users (username, password)
-     User roles and permissions
-     Profile information (firstName, lastName, email)
+     1. User.js: Mongoose schema for user authentication with support for:
+     2. Google OAuth users (googleId, displayName, picture)
+     3. Local users (username, password)
+     4. User roles and permissions
+     5. Profile information (firstName, lastName, email)
 
 /controllers
-     authController.js: Handles authentication logic including:
-     Login page rendering
-     Local login processing
-     Google OAuth authentication
-     User registration
-     Logout functionality
+     1. authController.js: Handles authentication logic including:
+     2. Login page rendering
+     3. Local login processing
+     4. Google OAuth authentication
+     5. User registration
+     6. Logout functionality
 
 /views (EJS Templates)
-     content.ejs: Main product catalog page with search and filtering
-     create.ejs: Product creation form
-     details.ejs: Individual product details page
-     edit.ejs: Product editing form
-     list.ejs: Administrative product list view
-     login.ejs: User login page
-     signup.ejs: User registration page
-     shoppingcart.ejs: Shopping cart display and management
-     invoice.ejs: Order invoice generation
-     navbar.ejs: Navigation bar component
-     info.ejs: System information page
+     1. content.ejs: Main product catalog page with search and filtering
+     2. create.ejs: Product creation form
+     3. details.ejs: Individual product details page
+     4. edit.ejs: Product editing form
+     5. list.ejs: Administrative product list view
+     6. login.ejs: User login page
+     7. signup.ejs: User registration page
+     8. shoppingcart.ejs: Shopping cart display and management
+     9. invoice.ejs: Order invoice generation
+     10. navbar.ejs: Navigation bar component
+     11. info.ejs: System information page
 
 /supermarket_db (MongoDB Collections)
      products.bson/metadata.json: Product inventory data
@@ -235,6 +236,7 @@ local MongoDB installation
 
 # MongoDB Database Tools (Use mongodump.exe)
 1. download MongoDB Database Tools via (https://www.mongodb.com/try/download/database-tools)
+   
 Database Backup
 .\mongodump --uri="mongodb+srv://<username>:<passward>@cluster0.sdtvkpd.mongodb.net/supermarket_db" --out=D:\xampp\htdocs\Node.js-App
 Database Restore
