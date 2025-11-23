@@ -197,8 +197,7 @@ Login Options:
 1. Email: john@example.com / Password: USER (USER Role)
 2. Email: alice@supermarket.com / Password: STAFF (STAFF Role)
 
-# CRUD web pages provided after Login
-Product Management (Admin Functions):
+# CRUD web pages provided after Login (Product)
 Create Product:
 1. Navigate to /create
 2. Fill in product details (name, price, category, description , etc.)
@@ -237,20 +236,9 @@ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Food"
 
 curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/PROD009
 
-1. Get cart contents from user:
- curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
-2. Add item to cart to user:
-curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
-  -H "Content-Type: application/json" \
-  -d '{"productId":"PROD004","quantity":2,"userId":"USER001"}'
-3. Update cart:
-   curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update?userId=USER001" \
-  -H "Content-Type: application/json" \
-  -d '{"productId":"PROD004","quantity":5}'
-4. Delete cart item:
-   curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005?userId=USER001"
 
-# CRUD web pages provide the Logout button 
+
+# CRUD web pages provide the Logout button (Cart)
 1. Shopping Cart Operations:
 2. Add to Cart: Click "Add to Cart" on product pages
 3. View Cart: Navigate to /shoppingcart
@@ -271,15 +259,19 @@ curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
 4. Delete cart item
    curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005"
 
-
-
-3. Update cart item (first you need to have the product in cart)
+# CRUD web pages provide the Login button (Cart)
+1. Get cart contents from user:
+ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
+2. Add item to cart to user:
+curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"PROD004","quantity":2,"userId":"USER001"}'
+3. Update cart:
    curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update?userId=USER001" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":5}'
-
-4. Remove from cart
-     curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005?userId=USER001"
+4. Delete cart item:
+   curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005?userId=USER001"
 
 # Search and Filter APIs curl operation:
 Search products
