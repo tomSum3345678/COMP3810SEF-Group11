@@ -359,6 +359,386 @@ app.get("/logout", authController.logout);
 app.get('/auth/status', authController.checkAuthStatus);
 
 // RESTful APIs
+app.get('/api/cart', async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db(dbName);
+    
+    const userId = req.user?.userId || req.query.userId || t;
+    
+    const cart = await db.collection('carts').findOne({ userId: userId });
+    
+    if (!cart) {
+      return res.status(200).json({
+        success: true,
+        message: 'Cart is empty',
+        data: {
+          cartId: null,
+          userId: userId,
+          items: [],
+          totalItems: 0,
+          totalAmount: 0,
+          updatedAt: null
+        }
+      });
+    }
+    
+    const totalItems = cart.items.reduce((sum, item) => sum + item.quantity, 0);
+    const totalAmount = cart.items.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+    
+    res.status(200).json({
+      success: true,
+      message: 'Cart retrieved successfully',
+      data: {
+        cartId: cart.cartId,
+        userId: cart.userId,
+        items: cart.items,
+        totalItems: totalItems,
+        totalAmount: parseFloat(totalAmount.toFixed(2)),
+        updatedAt: cart.updatedAt
+      }
+    });
+    
+  } catch (error) {
+    console.error('Get cart error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to retrieve cart',
+      error: error.message
+    });
+  }
+});
+
+app.post('/api/cart/add', async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db(dbName);
+    
+    const { productId, quantity } = req.fields || req.body;
+    
+    if (!productId || !quantity) {
+      return res.status(400).json({
+        success: false,
+        message: 'ProductId and quantity are required'
+      });
+    }
+    
+    const product = await db.collection('products').findOne({ productId: productId });
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found'
+      });
+    }
+    
+    const quantityToAdd = parseInt(quantity, 10);
+    if (product.stock < quantityToAdd) {
+      return res.status(400).json({
+        success: false,
+        message: `Insufficient stock. Available: ${product.stock}`
+      });
+    }
+    
+    const userId = req.user?.userId || t;
+    
+    const existingCart = await db.collection('carts').findOne({ userId: userId });
+    
+    if (existingCart) {
+      const itemIndex = existingCart.items.findIndex(item => item.productId === productId);
+      
+      if (itemIndex > -1) {
+        existingCart.items[itemIndex].quantity += quantityToAdd;
+      } else {
+        existingCart.items.push({
+          productId: productId,
+          productName: product.productName,
+          quantity: quantityToAdd,
+          unitPrice: product.price,
+          addedAt: new Date()
+        });
+      }
+      
+      const newTotalAmount = existingCart.items.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+      
+      const updateResult = await db.collection('carts').updateOne(
+        { userId: userId },
+        {
+          $set: {
+            items: existingCart.items,
+            totalAmount: parseFloat(newTotalAmount.toFixed(2)),
+            updatedAt: new Date()
+          }
+        }
+      );
+      
+      res.status(200).json({
+        success: true,
+        message: 'Product added to cart successfully',
+        data: {
+          cartId: existingCart.cartId,
+          productId: productId,
+          quantity: quantityToAdd,
+          totalAmount: parseFloat(newTotalAmount.toFixed(2)),
+          modifiedCount: updateResult.modifiedCount
+        }
+      });
+      
+    } else {
+      const cartId = `CART${Date.now()}`;
+      const totalAmount = product.price * quantityToAdd;
+      
+      const newCart = {
+        cartId: cartId,
+        userId: userId,
+        items: [{
+          productId: productId,
+          productName: product.productName,
+          quantity: quantityToAdd,
+          unitPrice: product.price,
+          addedAt: new Date()
+        }],
+        totalAmount: parseFloat(totalAmount.toFixed(2)),
+        updatedAt: new Date()
+      };
+      
+      const insertResult = await db.collection('carts').insertOne(newCart);
+      
+      res.status(201).json({
+        success: true,
+        message: 'Cart created and product added successfully',
+        data: {
+          cartId: cartId,
+          productId: productId,
+          quantity: quantityToAdd,
+          totalAmount: parseFloat(totalAmount.toFixed(2)),
+          insertedId: insertResult.insertedId
+        }
+      });
+    }
+    
+  } catch (error) {
+    console.error('Add to cart error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to add product to cart',
+      error: error.message
+    });
+  }
+});
+
+app.put('/api/cart/update', async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db(dbName);
+    
+    const { productId, quantity } = req.fields || req.body;
+    
+    if (!productId || quantity === undefined) {
+      return res.status(400).json({
+        success: false,
+        message: 'ProductId and quantity are required'
+      });
+    }
+    
+    const newQuantity = parseInt(quantity, 10);
+    if (newQuantity < 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Quantity cannot be negative'
+      });
+    }
+    
+    const userId = req.user?.userId || req.query.userId || t;
+    
+    const cart = await db.collection('carts').findOne({ userId: userId });
+    
+    if (!cart) {
+      return res.status(404).json({
+        success: false,
+        message: 'Cart not found'
+      });
+    }
+    
+    const itemIndex = cart.items.findIndex(item => item.productId === productId);
+    
+    if (itemIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found in cart'
+      });
+    }
+    
+    if (newQuantity === 0) {
+      cart.items.splice(itemIndex, 1);
+    } else {
+      cart.items[itemIndex].quantity = newQuantity;
+    }
+    
+    const newTotalAmount = cart.items.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+    
+    const updateResult = await db.collection('carts').updateOne(
+      { userId: userId },
+      {
+        $set: {
+          items: cart.items,
+          totalAmount: parseFloat(newTotalAmount.toFixed(2)),
+          updatedAt: new Date()
+        }
+      }
+    );
+    
+    res.status(200).json({
+      success: true,
+      message: newQuantity === 0 ? 'Product removed from cart' : 'Cart updated successfully',
+      data: {
+        productId: productId,
+        newQuantity: newQuantity,
+        totalAmount: parseFloat(newTotalAmount.toFixed(2)),
+        modifiedCount: updateResult.modifiedCount
+      }
+    });
+    
+  } catch (error) {
+    console.error('Update cart error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update cart',
+      error: error.message
+    });
+  }
+});
+
+app.delete('/api/cart/remove/:productId', async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db(dbName);
+    
+    const { productId } = req.params;
+    const userId = req.user?.userId || req.query.userId || t;
+
+    const cart = await db.collection('carts').findOne({ userId: userId });
+    
+    if (!cart) {
+      return res.status(404).json({
+        success: false,
+        message: 'Cart not found'
+      });
+    }
+    
+    const itemIndex = cart.items.findIndex(item => item.productId === productId);
+    
+    if (itemIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: 'Product not found in cart'
+      });
+    }
+    
+    const removedItem = cart.items.splice(itemIndex, 1)[0];
+    
+    const newTotalAmount = cart.items.reduce((sum, item) => sum + (item.unitPrice * item.quantity), 0);
+    
+    const updateResult = await db.collection('carts').updateOne(
+      { userId: userId },
+      {
+        $set: {
+          items: cart.items,
+          totalAmount: parseFloat(newTotalAmount.toFixed(2)),
+          updatedAt: new Date()
+        }
+      }
+    );
+    
+    res.status(200).json({
+      success: true,
+      message: 'Product removed from cart successfully',
+      data: {
+        removedProductId: productId,
+        removedQuantity: removedItem.quantity,
+        totalAmount: parseFloat(newTotalAmount.toFixed(2)),
+        modifiedCount: updateResult.modifiedCount
+      }
+    });
+    
+  } catch (error) {
+    console.error('Remove from cart error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to remove product from cart',
+      error: error.message
+    });
+  }
+});
+
+
+app.delete('/api/cart/clear', async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db(dbName);
+    
+    const userId = req.user?.userId || req.query.userId || t;
+    
+    const deleteResult = await db.collection('carts').deleteOne({ userId: userId });
+    
+    if (deleteResult.deletedCount === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Cart not found or already empty'
+      });
+    }
+    
+    res.status(200).json({
+      success: true,
+      message: 'Cart cleared successfully',
+      data: {
+        deletedCount: deleteResult.deletedCount
+      }
+    });
+    
+  } catch (error) {
+    console.error('Clear cart error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to clear cart',
+      error: error.message
+    });
+  }
+});
+
+
+app.get('/api/cart/count', async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db(dbName);
+    
+    const userId = req.user?.userId || req.query.userId || t;
+    
+    const cart = await db.collection('carts').findOne({ userId: userId });
+    
+    const totalItems = cart ? cart.items.reduce((sum, item) => sum + item.quantity, 0) : 0;
+    const totalAmount = cart ? cart.totalAmount || 0 : 0;
+    
+    res.status(200).json({
+      success: true,
+      message: 'Cart count retrieved successfully',
+      data: {
+        totalItems: totalItems,
+        uniqueProducts: cart ? cart.items.length : 0,
+        totalAmount: totalAmount
+      }
+    });
+    
+  } catch (error) {
+    console.error('Get cart count error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to get cart count',
+      error: error.message
+    });
+  }
+});
+
+
 app.get('/api/products', async (req, res) => { //search products
   try {
     await client.connect();
