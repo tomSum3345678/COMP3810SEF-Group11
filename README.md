@@ -21,12 +21,19 @@ Email: alice@supermarket.com / Password : STAFF (staff user role)
 # Project File Structure
 NODE_JS-APP/
 ├── 📁 .git/                     # Version control
+
 ├── 📁 controllers/              # Authentication Controller layer
+
 │   └── 📄 authController.js     
+
 ├── 📁 models/                   # Data User models
+
 │   └── 📄 User.js              
+
 ├── 📁 node_modules/            
+
 ├── 📁 supermarket_db/          # MongoDB database backup
+
 │   ├── 📄 carts.bson           
 │   ├── 📄 carts.metadata.json
 │   ├── 📄 permissions.bson     
