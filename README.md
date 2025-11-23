@@ -235,7 +235,7 @@ curl -X PUT https://node-js-app-1-9vi5.onrender.com/api/products/update/PROD009 
 
 curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Food"
 
-curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/[product_id]
+curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/PROD009
 
 
 # CRUD web pages provide the Logout button 
