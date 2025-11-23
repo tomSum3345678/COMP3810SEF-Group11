@@ -269,9 +269,9 @@ curl -X POST "https://comp3810sef-group11.onrender.com/api/cart/add" \
 # Search and Filter APIs curl operation:
 Search products
 ```
-1. curl -X GET "https://comp3810sef-group11.onrender.com/api/products"
-2. curl -X GET "https://comp3810sef-group11.onrender.com/api/products?category=Beverages"
-3. curl -X GET "https://comp3810sef-group11.onrender.com/api/products?productName=Orange"
+curl -X GET "https://comp3810sef-group11.onrender.com/api/products"
+curl -X GET "https://comp3810sef-group11.onrender.com/api/products?category=Beverages"
+curl -X GET "https://comp3810sef-group11.onrender.com/api/products?productName=Orange"
 ```
 
 # Installation and Setup
