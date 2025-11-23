@@ -165,24 +165,24 @@ Staff: alice@supermarket.com / STAFF
 Product Management (Admin Functions):
 
 Create Product:
-     1. Navigate to /create
-     2. Fill in product details (name, price, category, description , etc.)
-     3. Upload product image
-     4. Click "Create Product" button
+1. Navigate to /create
+2. Fill in product details (name, price, category, description , etc.)
+3. Upload product image
+4. Click "Create Product" button
      
 Read Products:
-     1. Customer View: Visit /content for product catalog
-     2. Admin View: Visit /list for management interface
-     3. Use search and filter options
+1. Customer View: Visit /content for product catalog
+2. Admin View: Visit /list for management interface
+3. Use search and filter options
      
 Update Product:
-     1. From product list, click "Edit" button
-     2. Modify product information in /edit/:id
-     3. Save changes
+1. From product list, click "Edit" button
+2. Modify product information in /edit/:id
+3. Save changes
      
 Delete Product:
-     1. From product list, click "Delete" button
-     2. Confirm deletion
+1. From product list, click "Delete" button
+2. Confirm deletion
      
 # CRUD web pages provide the Logout button 
 
