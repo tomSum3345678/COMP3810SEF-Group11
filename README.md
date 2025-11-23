@@ -16,7 +16,7 @@ Deployment Platform: Render
 Version Control: Git
 
 # Cloud-base server URL for testing :
-Production Environment: https://node-js-app-1-9vi5.onrender.com
+Production Environment: https://comp3810sef-group11.onrender.com/
 
 # Project File Structure
 NODE_JS-APP/
@@ -217,7 +217,7 @@ Delete Product:
 2. Confirm deletion
      
 #  Product APIs curl operation:
-curl -X POST https://node-js-app-1-9vi5.onrender.com//api/products \
+curl -X POST https://comp3810sef-group11.onrender.com/api/products \
      -F "productId=PROD123" \
      -F "productName=Sample Widget" \
      -F "category=Electronics" \
@@ -226,13 +226,13 @@ curl -X POST https://node-js-app-1-9vi5.onrender.com//api/products \
      -F "description=A description of the widget." \
      -F "productImage=@/path/to/your/image.jpg"
 
-curl -X POST https://node-js-app-1-9vi5.onrender.com/api/products -F "productId=PROD009" -F "productName=Banana" -F "category=Food" -F "price=10" -F "stock=150" -F "description=A fresh yellow banana, great source of potassium." -F "productImage=@D:\study\Server-side & Cloud\image\banana.jpg"
+curl -X POST https://comp3810sef-group11.onrender.com/api/products -F "productId=PROD009" -F "productName=Banana" -F "category=Food" -F "price=10" -F "stock=150" -F "description=A fresh yellow banana, great source of potassium." -F "productImage=@D:\study\Server-side & Cloud\image\banana.jpg"
 
-curl -X PUT https://node-js-app-1-9vi5.onrender.com/api/products/update/PROD009 -F "price=12.50" -F "description=Freshly updated price for this tasty banana."
+curl -X PUT https://comp3810sef-group11.onrender.com/api/products/update/PROD009 -F "price=12.50" -F "description=Freshly updated price for this tasty banana."
 
-curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Food"
+curl -X GET "https://comp3810sef-group11.onrender.com/api/products?category=Food"
 
-curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/PROD009
+curl -X DELETE https://comp3810sef-group11.onrender.com/api/products/delete/PROD009
 
 
 
@@ -245,37 +245,37 @@ curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/PROD0
 
 # Shopping Cart APIs CRUD curl operation:   
 1. Get cart contents from public user:
-     curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart"
+     curl -X GET "https://comp3810sef-group11.onrender.com/api/cart"
 2. Add item to cart to public user:
-curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
+curl -X POST "https://comp3810sef-group11.onrender.com/api/cart/add" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":2}'
 3. Update cart item:
-   curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update" \
+   curl -X PUT "https://comp3810sef-group11.onrender.com/api/cart/update" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":5}'
 4. Delete cart item
-   curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005"
+   curl -X DELETE "https://comp3810sef-group11.onrender.com/api/cart/remove/PROD005"
 
 # CRUD web pages provide the Login button (Cart)
 1. Get cart contents from user:
- curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
+ curl -X GET "https://comp3810sef-group11.onrender.com/api/cart?userId=USER001"
 2. Add item to cart to user:
-curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
+curl -X POST "https://comp3810sef-group11.onrender.com/api/cart/add" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":2,"userId":"USER001"}'
 3. Update cart:
-   curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update?userId=USER001" \
+   curl -X PUT "https://comp3810sef-group11.onrender.com/api/cart/update?userId=USER001" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":5}'
 4. Delete cart item:
-   curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005?userId=USER001"
+   curl -X DELETE "https://comp3810sef-group11.onrender.com/api/cart/remove/PROD005?userId=USER001"
 
 # Search and Filter APIs curl operation:
 Search products
-1. curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products"
-2. curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Beverages"
-3. curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?productName=Orange"
+1. curl -X GET "https://comp3810sef-group11.onrender.com/api/products"
+2. curl -X GET "https://comp3810sef-group11.onrender.com/api/products?category=Beverages"
+3. curl -X GET "https://comp3810sef-group11.onrender.com/api/products?productName=Orange"
 
 
 # Installation and Setup
