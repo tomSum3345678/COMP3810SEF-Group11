@@ -92,7 +92,6 @@ NODE_JS-APP/
 └── 📄 server.js               # Main server file
 
 # Project file intro:
-<<<<<<< HEAD
 /models
      User.js: Mongoose schema for user authentication with support for:
      Google OAuth users (googleId, displayName, picture)
@@ -161,7 +160,7 @@ NODE_JS-APP/
 2. users.bson/metadata.json: User account information
 3. carts.bson/metadata.json: Shopping cart data
 4. permissions.bson/metadata.json: User permission settings
->>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
+
 
 # System Usage Guide
 User Features
@@ -197,7 +196,7 @@ Login Options:
 # Test Accounts
 End User: john@example.com / USER
 Staff: alice@supermarket.com / STAFF
-<<<<<<< HEAD
+
 # CRUD web pages provided after Login
 Product Management (Admin Functions):
 Create Product:
@@ -222,7 +221,7 @@ Add to Cart: Click "Add to Cart" on product pages
 View Cart: Navigate to /shoppingcart
 Update Quantities: Modify quantities in cart
 Checkout: Generate invoice via "Checkout" button
-=======
+
 
 # CRUD web pages provided after Login
 
@@ -255,7 +254,7 @@ Shopping Cart Operations:
 2. View Cart: Navigate to /shoppingcart
 3. Update Quantities: Modify quantities in cart
 4. Checkout: Generate invoice via "Checkout" button
->>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
+
 
 #  Product APIs curl operation:
 curl -X POST https://node-js-app-1-9vi5.onrender.com//api/products \
@@ -316,10 +315,9 @@ local MongoDB installation
 
 # MongoDB Database Tools (Use mongodump.exe)
 1. download MongoDB Database Tools via (https://www.mongodb.com/try/download/database-tools)
-<<<<<<< HEAD
-=======
+
    
->>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
+
 Database Backup
 .\mongodump --uri="mongodb+srv://<username>:<passward>@cluster0.sdtvkpd.mongodb.net/supermarket_db" --out=D:\xampp\htdocs\Node.js-App
 Database Restore
