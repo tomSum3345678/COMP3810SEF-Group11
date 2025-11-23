@@ -237,6 +237,18 @@ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Food"
 
 curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/PROD009
 
+1. Get cart contents from user:
+ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
+2. Add item to cart to user:
+curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"PROD004","quantity":2,"userId":"USER001"}'
+3. Update cart:
+   curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update?userId=USER001" \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"PROD004","quantity":5}'
+4. Delete cart item:
+   curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005?userId=USER001"
 
 # CRUD web pages provide the Logout button 
 1. Shopping Cart Operations:
@@ -245,20 +257,21 @@ curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/PROD0
 4. Update Quantities: Modify quantities in cart
 5. Checkout: Generate invoice via "Checkout" button
 
-# Shopping Cart APIs CRUD curl operation:
-1. Get cart contents from user
- curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
-2. Add item to cart to user
- curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001/add" \
-  -H "Content-Type: application/json" \
-  -d '{"productId":"PROD004","quantity":2}'
-   
-1. Get cart contents from public user
+# Shopping Cart APIs CRUD curl operation:   
+1. Get cart contents from public user:
      curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart"
-2. Add item to cart to public user
- curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
+2. Add item to cart to public user:
+curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":2}'
+3. Update cart item:
+   curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update" \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"PROD004","quantity":5}'
+4. Delete cart item
+   curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005"
+
+
 
 3. Update cart item (first you need to have the product in cart)
    curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update?userId=USER001" \
