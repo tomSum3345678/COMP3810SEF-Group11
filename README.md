@@ -274,16 +274,17 @@ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Food"
 
 curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/[product_id]
 
-# Shopping Cart APIs curl operation:
+# Shopping Cart APIs CRUD curl operation:
+# Get cart contents from user
+1. curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
+# Get cart contents from public user
+2. curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart"
+
 # Add item to cart
 POST /api/cart/add
 curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
 -H "Content-Type: application/json" \
 -d '{"productId":"[product_id]","quantity":2}'
-
-# Get cart contents
-GET /api/cart
-curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart"
 
 # Update cart item
 PUT /api/cart/update
