@@ -280,13 +280,12 @@ local MongoDB installation
 # MongoDB Database Tools (Use mongodump.exe)
 1. download MongoDB Database Tools via (https://www.mongodb.com/try/download/database-tools)
 
-   
-
 Database Backup
+```
 .\mongodump --uri="mongodb+srv://<username>:<passward>@cluster0.sdtvkpd.mongodb.net/supermarket_db" --out=D:\xampp\htdocs\Node.js-App
 Database Restore
 .\mongorestore --uri="mongodb+srv://<username>:<passward>@cluster0.sdtvkpd.mongodb.net/supermarket_db" --dir="D:\xampp\htdocs\Node.js-App\supermarket_db"
-
+```
 # localhost Operation Guides
 1. Clone the Project
      (git clone https://github.com/tomSum3345678/COMP3810SEF-Group11.git)
