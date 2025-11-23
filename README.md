@@ -176,7 +176,7 @@ User Features
      View cart total
 4. Checkout
      Generate invoices
-5. Admin Features Product Management
+5. Product Management
      Add products: Fill in product information, upload images
      Edit products: Modify product details
      Delete products: Remove unwanted products
@@ -194,33 +194,11 @@ Login Options:
      signup user First name , Last Name , Email , password , comfirm password
      Access via /signup route
 # Test Accounts
-End User: john@example.com / USER
-Staff: alice@supermarket.com / STAFF
+1. Email: john@example.com / Password: USER (USER Role)
+2. Email: alice@supermarket.com / Password: STAFF (STAFF Role)
 
 # CRUD web pages provided after Login
 Product Management (Admin Functions):
-Create Product:
-     Navigate to /create
-     Fill in product details (name, price, category, description , etc.)
-     Upload product image
-     Click "Create Product" button
-Read Products:
-     Customer View: Visit /content for product catalog
-     Admin View: Visit /list for management interface
-     Use search and filter options
-Update Product:
-     From product list, click "Edit" button
-     Modify product information in /edit/:id
-     Save changes
-Delete Product:
-     From product list, click "Delete" button
-     Confirm deletion
-
-
-# CRUD web pages provided after Login
-
-Product Management (Admin Functions):
-
 Create Product:
 1. Navigate to /create
 2. Fill in product details (name, price, category, description , etc.)
@@ -241,9 +219,6 @@ Delete Product:
 1. From product list, click "Delete" button
 2. Confirm deletion
      
-# CRUD web pages provide the Logout button 
-
-
 #  Product APIs curl operation:
 curl -X POST https://node-js-app-1-9vi5.onrender.com//api/products \
      -F "productId=PROD123" \
