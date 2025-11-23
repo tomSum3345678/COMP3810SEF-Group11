@@ -159,30 +159,38 @@ Login Options:
 # Test Accounts
 End User: john@example.com / USER
 Staff: alice@supermarket.com / STAFF
+
 # CRUD web pages provided after Login
+
 Product Management (Admin Functions):
+
 Create Product:
-     Navigate to /create
-     Fill in product details (name, price, category, description , etc.)
-     Upload product image
-     Click "Create Product" button
+     1. Navigate to /create
+     2. Fill in product details (name, price, category, description , etc.)
+     3. Upload product image
+     4. Click "Create Product" button
+     
 Read Products:
-     Customer View: Visit /content for product catalog
-     Admin View: Visit /list for management interface
-     Use search and filter options
+     1. Customer View: Visit /content for product catalog
+     2. Admin View: Visit /list for management interface
+     3. Use search and filter options
+     
 Update Product:
-     From product list, click "Edit" button
-     Modify product information in /edit/:id
-     Save changes
+     1. From product list, click "Edit" button
+     2. Modify product information in /edit/:id
+     3. Save changes
+     
 Delete Product:
-     From product list, click "Delete" button
-     Confirm deletion
+     1. From product list, click "Delete" button
+     2. Confirm deletion
+     
 # CRUD web pages provide the Logout button 
+
 Shopping Cart Operations:
-Add to Cart: Click "Add to Cart" on product pages
-View Cart: Navigate to /shoppingcart
-Update Quantities: Modify quantities in cart
-Checkout: Generate invoice via "Checkout" button
+1. Add to Cart: Click "Add to Cart" on product pages
+2. View Cart: Navigate to /shoppingcart
+3. Update Quantities: Modify quantities in cart
+4. Checkout: Generate invoice via "Checkout" button
 
 #  Product APIs curl operation:
 curl -X POST https://node-js-app-1-9vi5.onrender.com//api/products \
