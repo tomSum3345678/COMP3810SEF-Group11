@@ -262,19 +262,19 @@ curl -X DELETE https://comp3810sef-group11.onrender.com/api/products/delete/PROD
 ```
 curl -X GET "https://comp3810sef-group11.onrender.com/api/cart"
 ```
-3. Add item to cart to public user:
+2. Add item to cart to public user:
 ```
 curl -X POST "https://comp3810sef-group11.onrender.com/api/cart/add" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":2}'
 ```
-5. Update cart item:
+3. Update cart item:
 ```
    curl -X PUT "https://comp3810sef-group11.onrender.com/api/cart/update" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":5}'
 ```
-7. Delete cart item:
+4. Delete cart item:
 ```
    curl -X DELETE "https://comp3810sef-group11.onrender.com/api/cart/remove/PROD005"
 ```
@@ -289,13 +289,13 @@ curl -X POST "https://comp3810sef-group11.onrender.com/api/cart/add" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":2,"userId":"USER001"}'
 ```
-4. Update cart:
+3. Update cart:
 ```
    curl -X PUT "https://comp3810sef-group11.onrender.com/api/cart/update?userId=USER001" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":5}'
 ```
-6. Delete cart item:
+4. Delete cart item:
 ```
    curl -X DELETE "https://comp3810sef-group11.onrender.com/api/cart/remove/PROD005?userId=USER001"
 ```
