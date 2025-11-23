@@ -18,11 +18,16 @@ CHAN Chi Ho(12890916)
 
 
 # Technology Stack
-Backend: Node.js, Express.js
-Database: MongoDB Atlas
-Authentication: Passport.js (Google OAuth 2.0 + Local Strategy)
-Template Engine: EJS
-Deployment Platform: Render
+Backend: Node.js, Express.js  
+
+Database: MongoDB Atlas  
+
+Authentication: Passport.js (Google OAuth 2.0 + Local Strategy)  
+
+Template Engine: EJS  
+
+Deployment Platform: Render  
+
 Version Control: Git
 
 # Cloud-base server URL for testing :
