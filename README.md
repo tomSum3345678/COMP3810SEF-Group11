@@ -5,7 +5,9 @@ A comprehensive supermarket product management system built with Node.js and Mon
 
 # Project Information
 Group Number : 11
-student name & SID :
+student name (SID) : 
+
+Ming Chun Wing(14218294)
 
 # Technology Stack
 Backend: Node.js, Express.js
@@ -63,7 +65,7 @@ NODE_JS-APP/
 
 │   ├── 📄 edit.ejs             # Edit product page
 
-│   ├── 📄 info.ejs             # System information page
+│   ├── 📄 info.ejs             # Error message display
 
 │   ├── 📄 invoice.ejs          # Invoice page
 
@@ -117,7 +119,7 @@ NODE_JS-APP/
 8. shoppingcart.ejs: Shopping cart display and management
 9. invoice.ejs: Order invoice generation
 10. navbar.ejs: Navigation bar component
-11. info.ejs: System information page
+11. info.ejs: Error message display
 
 /supermarket_db (MongoDB Collections)
 1. products.bson/metadata.json: Product inventory data
