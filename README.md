@@ -1,5 +1,3 @@
-# Node.js-App
-
 # Supermarket Web Application
 A comprehensive supermarket product management system built with Node.js and MongoDB, featuring Google OAuth authentication, product management, shopping cart functionality, and invoice generation.
 
