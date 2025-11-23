@@ -5,7 +5,13 @@ A comprehensive supermarket product management system built with Node.js and Mon
 
 # Project Information
 Group Number : 11
+<<<<<<< HEAD
 student name & SID :
+=======
+student name (SID) : 
+
+Ming Chun Wing(14218294)
+>>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
 
 # Technology Stack
 Backend: Node.js, Express.js
@@ -63,7 +69,7 @@ NODE_JS-APP/
 
 │   ├── 📄 edit.ejs             # Edit product page
 
-│   ├── 📄 info.ejs             # System information page
+│   ├── 📄 info.ejs             # Error message display
 
 │   ├── 📄 invoice.ejs          # Invoice page
 
@@ -90,6 +96,7 @@ NODE_JS-APP/
 └── 📄 server.js               # Main server file
 
 # Project file intro:
+<<<<<<< HEAD
 /models
      User.js: Mongoose schema for user authentication with support for:
      Google OAuth users (googleId, displayName, picture)
@@ -123,6 +130,42 @@ NODE_JS-APP/
      users.bson/metadata.json: User account information
      carts.bson/metadata.json: Shopping cart data
      permissions.bson/metadata.json: User permission settings
+=======
+
+/models
+1. User.js: Mongoose schema for user authentication with support for:
+2. Google OAuth users (googleId, displayName, picture)
+3. Local users (username, password)
+4. User roles and permissions
+5. Profile information (firstName, lastName, email)
+
+/controllers
+1. authController.js: Handles authentication logic including:
+2. Login page rendering
+3. Local login processing
+4. Google OAuth authentication
+5. User registration
+6. Logout functionality
+
+/views (EJS Templates)
+1. content.ejs: Main product catalog page with search and filtering     
+2. create.ejs: Product creation form
+3. details.ejs: Individual product details page
+4. edit.ejs: Product editing form
+5. list.ejs: Administrative product list view
+6. login.ejs: User login page
+7. signup.ejs: User registration page
+8. shoppingcart.ejs: Shopping cart display and management
+9. invoice.ejs: Order invoice generation
+10. navbar.ejs: Navigation bar component
+11. info.ejs: Error message display
+
+/supermarket_db (MongoDB Collections)
+1. products.bson/metadata.json: Product inventory data
+2. users.bson/metadata.json: User account information
+3. carts.bson/metadata.json: Shopping cart data
+4. permissions.bson/metadata.json: User permission settings
+>>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
 
 # System Usage Guide
 User Features
@@ -158,6 +201,7 @@ Login Options:
 # Test Accounts
 End User: john@example.com / USER
 Staff: alice@supermarket.com / STAFF
+<<<<<<< HEAD
 # CRUD web pages provided after Login
 Product Management (Admin Functions):
 Create Product:
@@ -182,6 +226,40 @@ Add to Cart: Click "Add to Cart" on product pages
 View Cart: Navigate to /shoppingcart
 Update Quantities: Modify quantities in cart
 Checkout: Generate invoice via "Checkout" button
+=======
+
+# CRUD web pages provided after Login
+
+Product Management (Admin Functions):
+
+Create Product:
+1. Navigate to /create
+2. Fill in product details (name, price, category, description , etc.)
+3. Upload product image
+4. Click "Create Product" button
+     
+Read Products:
+1. Customer View: Visit /content for product catalog
+2. Admin View: Visit /list for management interface
+3. Use search and filter options
+     
+Update Product:
+1. From product list, click "Edit" button
+2. Modify product information in /edit/:id
+3. Save changes
+     
+Delete Product:
+1. From product list, click "Delete" button
+2. Confirm deletion
+     
+# CRUD web pages provide the Logout button 
+
+Shopping Cart Operations:
+1. Add to Cart: Click "Add to Cart" on product pages
+2. View Cart: Navigate to /shoppingcart
+3. Update Quantities: Modify quantities in cart
+4. Checkout: Generate invoice via "Checkout" button
+>>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
 
 #  Product APIs curl operation:
 curl -X POST https://node-js-app-1-9vi5.onrender.com//api/products \
@@ -225,16 +303,27 @@ curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/[product
 # Search and Filter APIs curl operation:
 Search products
 GET /api/products/search?q=searchterm&category=Electronics&minPrice=10&maxPrice=100
+<<<<<<< HEAD
 curl -X GET "https://your-server.com/api/products/search?q=laptop&category=Electronics"
 Get categories
 GET /api/categories
 curl -X GET "https://your-server.com/api/categories"
+=======
+curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products/search?q=laptop&category=Electronics"
+Get categories
+GET /api/categories
+curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/categories"
+>>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
 
 # Installation and Setup
 local MongoDB installation
 
 # MongoDB Database Tools (Use mongodump.exe)
 1. download MongoDB Database Tools via (https://www.mongodb.com/try/download/database-tools)
+<<<<<<< HEAD
+=======
+   
+>>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
 Database Backup
 .\mongodump --uri="mongodb+srv://<username>:<passward>@cluster0.sdtvkpd.mongodb.net/supermarket_db" --out=D:\xampp\htdocs\Node.js-App
 Database Restore
@@ -242,7 +331,11 @@ Database Restore
 
 # localhost Operation Guides
 1. Clone the Project
+<<<<<<< HEAD
 git clone https://github.com/tomSum3345678/Node.js-App.git
+=======
+git clone https://github.com/tomSum3345678/COMP3810SEF-Group11.git
+>>>>>>> ab93c7c44636f765c47689ca07459056e6dd6ab3
 cd Node.js-App
 2. Install Dependencies
 npm install passport passport-local passport-google-oauth20 express express-session connect-mongo mongoose bcryptjs dotenv
