@@ -92,38 +92,38 @@ NODE_JS-APP/
 # Project file intro:
 
 /models
-     1. User.js: Mongoose schema for user authentication with support for:
-     2. Google OAuth users (googleId, displayName, picture)
-     3. Local users (username, password)
-     4. User roles and permissions
-     5. Profile information (firstName, lastName, email)
+1. User.js: Mongoose schema for user authentication with support for:
+2. Google OAuth users (googleId, displayName, picture)
+3. Local users (username, password)
+4. User roles and permissions
+5. Profile information (firstName, lastName, email)
 
 /controllers
-     1. authController.js: Handles authentication logic including:
-     2. Login page rendering
-     3. Local login processing
-     4. Google OAuth authentication
-     5. User registration
-     6. Logout functionality
+1. authController.js: Handles authentication logic including:
+2. Login page rendering
+3. Local login processing
+4. Google OAuth authentication
+5. User registration
+6. Logout functionality
 
 /views (EJS Templates)
-     1. content.ejs: Main product catalog page with search and filtering
-     2. create.ejs: Product creation form
-     3. details.ejs: Individual product details page
-     4. edit.ejs: Product editing form
-     5. list.ejs: Administrative product list view
-     6. login.ejs: User login page
-     7. signup.ejs: User registration page
-     8. shoppingcart.ejs: Shopping cart display and management
-     9. invoice.ejs: Order invoice generation
-     10. navbar.ejs: Navigation bar component
-     11. info.ejs: System information page
+1. content.ejs: Main product catalog page with search and filtering     
+2. create.ejs: Product creation form
+3. details.ejs: Individual product details page
+4. edit.ejs: Product editing form
+5. list.ejs: Administrative product list view
+6. login.ejs: User login page
+7. signup.ejs: User registration page
+8. shoppingcart.ejs: Shopping cart display and management
+9. invoice.ejs: Order invoice generation
+10. navbar.ejs: Navigation bar component
+11. info.ejs: System information page
 
 /supermarket_db (MongoDB Collections)
-     products.bson/metadata.json: Product inventory data
-     users.bson/metadata.json: User account information
-     carts.bson/metadata.json: Shopping cart data
-     permissions.bson/metadata.json: User permission settings
+1. products.bson/metadata.json: Product inventory data
+2. users.bson/metadata.json: User account information
+3. carts.bson/metadata.json: Shopping cart data
+4. permissions.bson/metadata.json: User permission settings
 
 # System Usage Guide
 User Features
