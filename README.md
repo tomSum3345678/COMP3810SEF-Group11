@@ -275,25 +275,30 @@ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Food"
 curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/[product_id]
 
 # Shopping Cart APIs CRUD curl operation:
-# Get cart contents from user
-1. curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
-# Get cart contents from public user
-2. curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart"
 
-# Add item to cart to public user
+1. Get cart contents from user
+ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
+2. Add item to cart to user
+ curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001/add" \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"PROD004","quantity":2}'
+   
+1.Get cart contents from public user
+ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart"
+2. Add item to cart to public user
 POST /api/cart/add
-curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
-  -H "Content-Type: application/json" \
-  -d '{"productId":"PROD004","quantity":2}'
-#Add item to cart to user
-curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001/add" \
+ curl -X POST "https://node-js-app-1-9vi5.onrender.com/api/cart/add" \
   -H "Content-Type: application/json" \
   -d '{"productId":"PROD004","quantity":2}'
 
-# Update cart item
 
-# Remove from cart
+3. Update cart item (first you need to have the product in cart)
+   curl -X PUT "https://node-js-app-1-9vi5.onrender.com/api/cart/update?userId=USER001" \
+  -H "Content-Type: application/json" \
+  -d '{"productId":"PROD004","quantity":5}'
 
+5. Remove from cart
+     curl -X DELETE "https://node-js-app-1-9vi5.onrender.com/api/cart/remove/PROD005?userId=USER001"
 
 # Search and Filter APIs curl operation:
 Search products
