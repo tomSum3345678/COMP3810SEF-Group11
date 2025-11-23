@@ -215,12 +215,6 @@ Update Product:
 Delete Product:
      From product list, click "Delete" button
      Confirm deletion
-# CRUD web pages provide the Logout button 
-Shopping Cart Operations:
-Add to Cart: Click "Add to Cart" on product pages
-View Cart: Navigate to /shoppingcart
-Update Quantities: Modify quantities in cart
-Checkout: Generate invoice via "Checkout" button
 
 
 # CRUD web pages provided after Login
@@ -249,12 +243,6 @@ Delete Product:
      
 # CRUD web pages provide the Logout button 
 
-Shopping Cart Operations:
-1. Add to Cart: Click "Add to Cart" on product pages
-2. View Cart: Navigate to /shoppingcart
-3. Update Quantities: Modify quantities in cart
-4. Checkout: Generate invoice via "Checkout" button
-
 
 #  Product APIs curl operation:
 curl -X POST https://node-js-app-1-9vi5.onrender.com//api/products \
@@ -274,8 +262,15 @@ curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/products?category=Food"
 
 curl -X DELETE https://node-js-app-1-9vi5.onrender.com/api/products/delete/[product_id]
 
-# Shopping Cart APIs CRUD curl operation:
 
+# CRUD web pages provide the Logout button 
+1. Shopping Cart Operations:
+2. Add to Cart: Click "Add to Cart" on product pages
+3. View Cart: Navigate to /shoppingcart
+4. Update Quantities: Modify quantities in cart
+5. Checkout: Generate invoice via "Checkout" button
+
+# Shopping Cart APIs CRUD curl operation:
 1. Get cart contents from user
  curl -X GET "https://node-js-app-1-9vi5.onrender.com/api/cart?userId=USER001"
 2. Add item to cart to user
