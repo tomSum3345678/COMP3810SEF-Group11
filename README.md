@@ -256,7 +256,7 @@ Database Restore
 1. Clone the Project
      (git clone https://github.com/tomSum3345678/COMP3810SEF-Group11.git)
 2. cd Node.js-App
-3. Install Dependencies
+3. Install Dependencies  
 npm install passport passport-local passport-google-oauth20 express express-session connect-mongo mongoose bcryptjs dotenv
 4. Environment Variables Configuration
 make sure production of GOOGLE_CALLBACK_URL in the .env was comment
