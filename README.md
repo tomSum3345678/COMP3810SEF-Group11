@@ -276,7 +276,7 @@ Make sure the production `GOOGLE_CALLBACK_URL` in the `COMP3810SEF-Group11-main/
 #GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
 ```
 
-Make sure the `GoogleStrategy` in `COMP3810SEF-Group11-main/server.js` is set as `proxy: false` like so:  
+>Make sure the `GoogleStrategy` in `COMP3810SEF-Group11-main/server.js` is set as `proxy: false` like so:  
 
 ```
 ...
@@ -290,7 +290,7 @@ proxy: false
 ...
 ```
 
-Make sure to comment out the code for Middleware Render Production Setup in `server.js` from line 220 - 232 and uncomment the middleware localhost session like so:  
+>Make sure to comment out the code for Middleware Render Production Setup in `server.js` from line 220 - 232 and uncomment the middleware localhost session like so:  
 
 ```
 // localhost
