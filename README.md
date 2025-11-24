@@ -266,11 +266,10 @@ Database Restore
      npm install passport passport-local passport-google-oauth20 express express-session connect-mongo mongoose bcryptjs dotenv
      ```
 4. Environment Variables Configuration  
-Make sure production of GOOGLE_CALLBACK_URL in the COMP3810SEF-Group11-main/.env was commented like so
-     ```
-(#)GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
-     ```
-Make sure GoogleStrategy in the COMP3810SEF-Group11-main/server.js was set as proxy: false like so  
+Make sure production of GOOGLE_CALLBACK_URL in the COMP3810SEF-Group11-main/.env was commented like so:  
+#GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
+
+Make sure GoogleStrategy in the COMP3810SEF-Group11-main/server.js was set as proxy: false like so:  
      ```
 
   clientID: process.env.GOOGLE_CLIENT_ID,
