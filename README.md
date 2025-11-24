@@ -261,7 +261,7 @@ npm install passport passport-local passport-google-oauth20 express express-sess
 4. Environment Variables Configuration
 make sure production of GOOGLE_CALLBACK_URL in the .env was comment
 5. start with localhost
-please comment the code of Middleware Setup in server.js from line 218 - 228
+please comment the code of Middleware Setup in server.js from line 218 - 228  
 Uncomment the code of Middleware Setup in server.js from line 203 - 216
 6. npm start
 The application will start at http://localhost:8099
