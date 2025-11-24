@@ -273,7 +273,6 @@ Make sure production of GOOGLE_CALLBACK_URL in the COMP3810SEF-Group11-main/.env
 Make sure GoogleStrategy in the COMP3810SEF-Group11-main/server.js was set as
 proxy: false like so
      ```
-  ……
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK_URL,
@@ -281,8 +280,8 @@ proxy: false like so
   // proxy: true
   // false for localhost testing
   proxy: false
-  ……
      ```
+
 Make sure comment the code of Middleware Render Production Setup in server.js from line 220 - 232 and uncomment middleware localhost session like so
      ```
     // localhost
