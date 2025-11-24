@@ -271,53 +271,54 @@ Database Restore
 
    >Make sure the production `GOOGLE_CALLBACK_URL` in the `COMP3810SEF-Group11-main/.env` is commented out like so:
 
-```
-#GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
-```
+     ```
+     #GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
+     ```
 
    >Make sure the `GoogleStrategy` in `COMP3810SEF-Group11-main/server.js` is set as `proxy: false` like so:  
 
-```
-...
-clientID: process.env.GOOGLE_CLIENT_ID,
-clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-callbackURL: process.env.GOOGLE_CALLBACK_URL,
-// true for production Render
-// proxy: true
-// false for localhost testing
-proxy: false
-...
-```
+     ```
+     ...
+     clientID: process.env.GOOGLE_CLIENT_ID,
+     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+     callbackURL: process.env.GOOGLE_CALLBACK_URL,
+     // true for production Render
+     // proxy: true
+     // false for localhost testing
+     proxy: false
+     ...
+     ```
 
    >Make sure to comment out the code for Middleware Render Production Setup in `server.js` from line 220 - 232 and uncomment the middleware localhost session like so:  
 
-```
-// localhost
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    httpOnly: true,
-    secure: false,
-    sameSite: 'lax'
-  }
-}));
-/* Render Production
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none'
-  }
-}));
-*/
-```
+     ```
+     // localhost
+     app.use(session({
+       secret: process.env.SESSION_SECRET,
+       resave: false,
+       saveUninitialized: false,
+       cookie: {
+         maxAge: 24 * 60 * 60 * 1000, // 24 hours
+         httpOnly: true,
+         secure: false,
+         sameSite: 'lax'
+       }
+     }));
+     
+     /* Render Production
+     app.use(session({
+       secret: process.env.SESSION_SECRET,
+       resave: false,
+       saveUninitialized: false,
+       cookie: {
+         maxAge: 24 * 60 * 60 * 1000, // 24 hours
+         httpOnly: true,
+         secure: true,
+         sameSite: 'none'
+       }
+     }));
+     */
+     ```
 
 5. Run "npm start"  
 
