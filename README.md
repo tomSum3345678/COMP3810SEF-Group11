@@ -265,7 +265,7 @@ Database Restore
 4. Environment Variables Configuration
 Make sure production of GOOGLE_CALLBACK_URL in the .env was commented out
 5. Before you start with localhost  
-Please comment the code of Middleware Setup in server.js from line 218 - 228  
-Uncomment the code of Middleware Setup in server.js from line 203 - 216
+     Please comment the code of Middleware Setup in server.js from line 218 - 228  
+     Uncomment the code of Middleware Setup in server.js from line 203 - 216
 6. Run "npm start"  
-The application will start at http://localhost:8099
+     The application will start at http://localhost:8099
