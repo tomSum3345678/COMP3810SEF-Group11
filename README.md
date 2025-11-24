@@ -255,34 +255,35 @@ Database Restore
 ```
 .\mongorestore --uri="mongodb+srv://<username>:<passward>@cluster0.sdtvkpd.mongodb.net/supermarket_db" --dir="D:\xampp\htdocs\Node.js-App\supermarket_db"
 ```
-# localhost Operation Guides
+# Localhost Operation Guides
 1. Clone the Project
      ```
      git clone https://github.com/tomSum3345678/COMP3810SEF-Group11.git
      ```
 2. cd COMP3810SEF-Group11
-3. Install Dependencies  
+3. Install Dependencies
      ```
      npm install passport passport-local passport-google-oauth20 express express-session connect-mongo mongoose bcryptjs dotenv
      ```
-4. Environment Variables Configuration  
-Make sure production of GOOGLE_CALLBACK_URL in the COMP3810SEF-Group11-main/.env was commented like so:  
-#GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
-
-Make sure GoogleStrategy in the COMP3810SEF-Group11-main/server.js was set as proxy: false like so:  
+4. Environment Variables Configuration
+Make sure production of GOOGLE_CALLBACK_URL in the COMP3810SEF-Group11-main/.env was commented like so
      ```
-
+#GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
+     ```
+Make sure GoogleStrategy in the COMP3810SEF-Group11-main/server.js was set as
+proxy: false like so
+     ```
+……
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK_URL,
   // true for production Render
   // proxy: true
-  //  false for localhost testing
+  // false for localhost testing
   proxy: false
-
+ ……
      ```
-
-     Make sure comment the code of Middleware Render Production Setup in server.js from line 220 - 232 and uncomment  middleware localhost session like so
+     Make sure comment the code of Middleware Render Production Setup in server.js from line 220 - 232 and uncomment middleware localhost session like so
      ```
 // localhost
 app.use(session({
@@ -296,7 +297,6 @@ app.use(session({
     sameSite: 'lax'
   }
 }));
-
 /*Render Production
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -310,7 +310,6 @@ app.use(session({
   }
 }));
 */
-
      ```
-5. Run "npm start"  
+5. Run "npm start"
      The application will start at http://localhost:8099
