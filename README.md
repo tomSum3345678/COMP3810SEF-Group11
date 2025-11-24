@@ -270,7 +270,7 @@ Database Restore
      ```
 4. Environment Variables Configuration  
 
-Make sure the production `GOOGLE_CALLBACK_URL` in the `COMP3810SEF-Group11-main/.env` is commented out like so:
+>Make sure the production `GOOGLE_CALLBACK_URL` in the `COMP3810SEF-Group11-main/.env` is commented out like so:
 
 ```
 #GOOGLE_CALLBACK_URL=https://comp3810sef-group11.onrender.com/auth/google/callback
