@@ -1150,8 +1150,7 @@ app.get('/content', async (req, res) => {
 // Shopping Cart
 app.get('/shoppingcart', async (req, res) => {
 console.log(t);
-if(req.user==null&&1==2){
-	res.redirect('/login');
+if(1==2){
 }else{
   const user = req?.user || { userId: t };
   try {
@@ -1312,6 +1311,7 @@ process.on('SIGINT', async () => {
   console.log(' Database connections closed');
   process.exit(0);
 });
+
 
 
 
