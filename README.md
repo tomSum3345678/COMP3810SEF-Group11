@@ -264,7 +264,7 @@ Database Restore
 
 3. Install Dependencies
      ```
-     npm install passport passport-local passport-google-oauth20 express express-session connect-mongo mongoose bcryptjs dotenv
+     npm install
      ```
 4. Environment Variables Configuration  
 
