@@ -4,7 +4,7 @@ A comprehensive supermarket product management system built with Node.js and Mon
 # Project Information
 Group Number : 11  
 
-Student name & SID :  
+Student Name & SID :  
 
 SUM Ka On(13896581)  
 
